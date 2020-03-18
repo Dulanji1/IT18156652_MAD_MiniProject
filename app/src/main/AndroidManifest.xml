@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.sightseeen">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/logoicon"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".other_packages"></activity>
+        <activity android:name=".Sight_Seen_Details_Page" />
+        <activity android:name=".Other_Coast_Details" />
+        <activity android:name=".Sight_Seen_Basic_Rule2" />
+        <activity android:name=".Sight_Seen_Basic_Rule" />
+        <activity android:name=".Sight_seen_rules" />
+        <activity android:name=".Add_new_sight" />
+        <activity android:name=".sightseen" />
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
