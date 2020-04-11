@@ -41,7 +41,7 @@
         android:layout_width="318dp"
         android:layout_height="49dp"
         android:layout_marginTop="16dp"
-        android:background="#509AAD"
+        android:background="@color/colorPrimaryDark"
         android:text="@string/page1but1"
         android:textColor="#090909"
         android:textStyle="bold"
