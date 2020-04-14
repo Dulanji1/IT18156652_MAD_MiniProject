@@ -8,11 +8,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.sightseeen.Database.DBHelper;
+
 public class Other_Coast_Details extends AppCompatActivity {
-    private Button but1;
+   private Button but1;
+   private Button but2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,40 +29,25 @@ public class Other_Coast_Details extends AppCompatActivity {
             }
         });
 
-        Button showDialog = (Button)findViewById(R.id.button15);
-        showDialog.setOnClickListener(new View.OnClickListener() {
+        but2=(Button)findViewById(R.id.button15);
+        but2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder mbuilder =new AlertDialog.Builder(Other_Coast_Details.this);
-                View mView = getLayoutInflater().inflate(R.layout.add_otherpackages,null);
-                final EditText packageno = (EditText) mView.findViewById(R.id.editText5);
-                final EditText packagename = (EditText) mView.findViewById(R.id.editText6);
-               EditText packagedecription = (EditText) mView.findViewById(R.id.editText7);
-               final EditText packageprice = (EditText) mView.findViewById(R.id.editText8);
-                Button madd = (Button) mView.findViewById(R.id.button16);
-
-                madd.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if(!packageno.getText().toString().isEmpty() && !packagename.getText().toString().isEmpty() && !packageprice.getText().toString().isEmpty()){
-                            Toast.makeText(Other_Coast_Details.this,"Add New Package Successfully",Toast.LENGTH_SHORT).show();
-                        }else {
-                            Toast.makeText(Other_Coast_Details.this,"Please fill any empty fields",Toast.LENGTH_SHORT).show();
-                        }
-
-                    }
-                });
-                mbuilder.setView(mView);
-                AlertDialog dialog = mbuilder.create();
-                dialog.show();
-
+                openActivity2();
             }
         });
-
     }
 
-    public  void openActivity1(){
-        Intent intent = new Intent(this,other_packages.class);
-        startActivity(intent);
+    public void openActivity1(){
+        Intent intent1 = new Intent(this,other_packages.class);
+        startActivity(intent1);
     }
+
+
+    public void openActivity2(){
+        Intent intent2 = new Intent(this,Add_New_Cost.class);
+        startActivity(intent2);
+    }
+
+
 }

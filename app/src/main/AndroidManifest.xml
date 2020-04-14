@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.sightseeen">
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -9,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".other_packages"></activity>
+        <activity android:name=".Add_New_Cost"></activity>
+        <activity android:name=".other_packages" />
         <activity android:name=".Sight_Seen_Details_Page" />
         <activity android:name=".Other_Coast_Details" />
         <activity android:name=".Sight_Seen_Basic_Rule2" />

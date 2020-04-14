@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "305757266196",
+    "firebase_url": "https://sightseeen.firebaseio.com",
+    "project_id": "sightseeen",
+    "storage_bucket": "sightseeen.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:305757266196:android:a58d5236595399cb576201",
+        "android_client_info": {
+          "package_name": "com.example.sightseeen"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "305757266196-cboptmrjmhosh23mvj06cvdf9pskn2gv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sightseeen",
+            "certificate_hash": "d4054b076bc999a981a65b22765bed553494a180"
+          }
+        },
+        {
+          "client_id": "305757266196-cjfg8mct37gl2klgajsssr1o4utg4cug.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwOQllpG3HIzceiqHiv5NDO9pDJjE-NT4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "305757266196-cjfg8mct37gl2klgajsssr1o4utg4cug.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

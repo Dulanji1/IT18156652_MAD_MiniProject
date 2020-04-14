@@ -33,7 +33,7 @@
         app:srcCompat="@drawable/sight2" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/f1_frag"
         android:layout_width="413dp"
         android:layout_height="68dp"
         android:layout_marginStart="45dp"
@@ -55,7 +55,7 @@
         tools:ignore="OnClick" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/f2_frag"
         android:layout_width="413dp"
         android:layout_height="70dp"
         android:layout_marginTop="32dp"
@@ -68,7 +68,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.866"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3" />
+        app:layout_constraintTop_toBottomOf="@+id/f1_frag" />
 
     <Button
         android:id="@+id/button5"
@@ -85,5 +85,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button4" />
+        app:layout_constraintTop_toBottomOf="@+id/f2_frag" />
 </androidx.constraintlayout.widget.ConstraintLayout>

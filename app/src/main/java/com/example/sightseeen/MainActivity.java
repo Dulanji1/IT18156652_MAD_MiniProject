@@ -6,14 +6,21 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+
+//import com.google.firebase.database.DatabaseReference;
 
 public class MainActivity extends AppCompatActivity {
 private Button but1;
 private Button but2;
+private Button but3;
+private Button but4;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         but1 = (Button) findViewById(R.id.p1but1);
 
