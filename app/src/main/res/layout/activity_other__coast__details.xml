@@ -21,27 +21,29 @@
 
     <ImageButton
         android:id="@+id/imageButton"
-        android:layout_width="255dp"
-        android:layout_height="137dp"
+        android:layout_width="347dp"
+        android:layout_height="258dp"
         android:layout_marginStart="74dp"
         android:layout_marginLeft="74dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="41dp"
         android:layout_marginRight="41dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.341"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView24"
-        app:srcCompat="@drawable/other1" />
+        app:srcCompat="@drawable/din4" />
 
     <Button
         android:id="@+id/button9"
-        android:layout_width="406dp"
-        android:layout_height="85dp"
-        android:layout_marginTop="84dp"
+        android:layout_width="410dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="36dp"
+        android:background="#509AAD"
         android:text="@string/otherpackagemenu"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.162"
+        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageButton" />
 
@@ -50,7 +52,9 @@
         android:layout_width="404dp"
         android:layout_height="79dp"
         android:layout_marginTop="40dp"
+        android:background="#509AAD"
         android:text="@string/ode"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent"

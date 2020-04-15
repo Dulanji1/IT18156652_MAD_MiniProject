@@ -1,4 +1,4 @@
-/*package com.example.sightseeen;
+package com.example.sightseeen;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -22,10 +23,13 @@ import com.google.firebase.database.ValueEventListener;
 public class Add_new_sight extends AppCompatActivity {
 
     EditText txtsightID,txtsightName,txttpriceChild,txtpriceAlud;
-    Button btnSave,btnShow,btnUpdate,btnDelete;
+    Button btnSave,btnShow,btnUpdate,btnDelete,btnshowall;
     DatabaseReference dbRef;
     sightseenticketprices sightPriceObj;
-    RecyclerView recyclerView;
+
+
+    //Firebase
+    FirebaseDatabase firebaseDatabase;
 
     //Method to clear all user inputs
     private void clearControls(){
@@ -42,52 +46,21 @@ public class Add_new_sight extends AppCompatActivity {
         setContentView(R.layout.activity_add_new_sight);
 
 
-
         txtsightID = findViewById(R.id.sno1);
-        txtsightName =findViewById(R.id.sname1);
-        txttpriceChild =findViewById(R.id.childprice);
-        txtpriceAlud =findViewById(R.id.adultprice);
+        txtsightName = findViewById(R.id.sname1);
+        txttpriceChild = findViewById(R.id.childprice);
+        txtpriceAlud = findViewById(R.id.adultprice);
 
         btnSave = findViewById(R.id.s_saveButton);
         btnShow = findViewById(R.id.s_showButton);
         btnUpdate = findViewById(R.id.s_updateButton);
         btnDelete = findViewById(R.id.s_deleteButton);
-
-        recyclerView = findViewById(R.id.recyclev);
-
+        btnshowall = findViewById(R.id.s_showAllButton);
 
 
-*/
-       /*final Button mShowDialog = (Button) findViewById(R.id.s_saveButton);
-        mShowDialog.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder mBuilder = new AlertDialog.Builder(Add_new_sight.this);
-                mBuilder.setTitle(R.string.dialogmas);
-                mBuilder.setCancelable(false);
-                mBuilder.setCancelable(false);
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        dbRef = firebaseDatabase.getReference("SightSeen");
 
-                mBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
-                    }
-                });
-                mBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
-
-                    }
-                });
-                AlertDialog alertDialog = mBuilder.create();
-                alertDialog.show();
-
-            }
-        });*/
-
-
-/*
         sightPriceObj = new sightseenticketprices();
 
         // save
@@ -96,7 +69,8 @@ public class Add_new_sight extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                dbRef = FirebaseDatabase.getInstance().getReference().child("SightSeen");
+
+              dbRef = FirebaseDatabase.getInstance().getReference().child("SightSeen");
                 try {
                     if (TextUtils.isEmpty(txtsightID.getText().toString()))
                         Toast.makeText(getApplicationContext(), "Please enter a sight ID", Toast.LENGTH_SHORT).show();
@@ -133,6 +107,7 @@ public class Add_new_sight extends AppCompatActivity {
 
 
 
+
         // Show
         btnShow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -160,6 +135,31 @@ public class Add_new_sight extends AppCompatActivity {
 
 
             }
+        });
+
+        //show all data
+        btnshowall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Cursor res = (Cursor) dbRef.getDatabase();
+                if (res.getCount() == 0){
+                    //show message
+                    showMessage3("Error","Nothing found");
+                    return;
+                }
+                StringBuffer buffer = new StringBuffer();
+                while (res.moveToNext()){
+
+                    buffer.append("packageNo :"+res.getString(0)+"\n");
+                    buffer.append("packageName :"+res.getString(1)+"\n");
+                    buffer.append("Ticket Price For Child :"+res.getString(2)+"\n");
+                    buffer.append("Ticket Price For Adult :"+res.getString(3)+"\n \n");
+
+                }
+                //show all data
+                showMessage3("Data",buffer.toString());
+                }
         });
 
         // Update
@@ -229,7 +229,16 @@ public class Add_new_sight extends AppCompatActivity {
             }
         });
 
-
     }
+
+    public void showMessage3(String title,String Message){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle(title);
+        builder.setMessage(Message);
+        builder.show();
+    }
+
+
 }
-*/
+

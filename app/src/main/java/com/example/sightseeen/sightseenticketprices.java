@@ -10,6 +10,9 @@ public class sightseenticketprices {
     public sightseenticketprices() {
     }
 
+    public sightseenticketprices(String sid, String sname, String scprice, String saprice) {
+    }
+
     public String getSightNo() {
         return sightNo;
     }

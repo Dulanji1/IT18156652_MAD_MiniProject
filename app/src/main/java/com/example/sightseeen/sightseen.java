@@ -20,7 +20,7 @@ public class sightseen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sightseen);
-        but1=(Button)findViewById(R.id.f1_frag);
+        but1=(Button)findViewById(R.id.s1_btn);
         but1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -28,7 +28,7 @@ public class sightseen extends AppCompatActivity {
             }
         });
 
-        but2=(Button)findViewById(R.id.button5);
+        but2=(Button)findViewById(R.id.s3_btn);
         but2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -36,7 +36,7 @@ public class sightseen extends AppCompatActivity {
             }
         });
 
-        but3=(Button)findViewById(R.id.f2_frag);
+        but3=(Button)findViewById(R.id.s2_btn);
         but3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,7 +45,7 @@ public class sightseen extends AppCompatActivity {
         });
     }
     public void openActivity1(){
-        Intent intent1 = new Intent(this,Sight_Seen_Basic_Rule.class);
+        Intent intent1 = new Intent(this,Add_new_sight.class);
         startActivity(intent1);
 
     }
@@ -62,7 +62,7 @@ public class sightseen extends AppCompatActivity {
 
 
     public void tapToBounce(View view) {
-        Button button1 = (Button) findViewById(R.id.f1_frag);
+        Button button1 = (Button) findViewById(R.id.s1_btn);
         Annotation animation1 = (Annotation) AnimationUtils.loadAnimation(this,R.anim.bounce);
         button1.setAnimation((Animation) animation1);
     }

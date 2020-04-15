@@ -13,6 +13,7 @@
         android:layout_height="64dp"
         android:onClick="changefragment"
         android:text="@string/package1"
+        android:textStyle="bold"
         tools:ignore="OnClick" />
 
     <Button
@@ -21,6 +22,7 @@
         android:layout_height="wrap_content"
         android:onClick="changefragment"
         android:text="@string/pac3"
+        android:textStyle="bold"
         tools:ignore="OnClick" />
 
     <Button
@@ -29,6 +31,7 @@
         android:layout_height="wrap_content"
         android:onClick="changefragment"
         android:text="@string/pac2"
+        android:textStyle="bold"
         tools:ignore="OnClick" />
 
     <Button
@@ -37,6 +40,7 @@
         android:layout_height="wrap_content"
         android:onClick="changefragment"
         android:text="@string/pac5"
+        android:textStyle="bold"
         tools:ignore="OnClick" />
 
     <fragment
