@@ -49,8 +49,8 @@
 
     <Button
         android:id="@+id/button15"
-        android:layout_width="404dp"
-        android:layout_height="79dp"
+        android:layout_width="413dp"
+        android:layout_height="68dp"
         android:layout_marginTop="40dp"
         android:background="#509AAD"
         android:text="@string/ode"
