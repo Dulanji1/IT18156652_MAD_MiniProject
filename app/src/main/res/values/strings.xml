@@ -108,4 +108,17 @@
     <string name="medpac">"Medicine Packages \n \n  Chaneling a doctor - 1500 \n \n Basic Medicine Package For Month (4 Person ) - 3000 \n \n Hospital charges for per person for one day - 1000\n \n "</string>
     <string name="sightmenu">Our Avalable Sight Seens  Packages in Sri Lanka</string>
     <string name="bsa">Show All</string>
+    <string name="newsigno">Enter Sight No(Integer No)</string>
+    <string name="nweshow">Add</string>
+    <string name="dadmin">Details For New Admin</string>
+    <string name="selall">Select All</string>
+    <string name="adname">Enter Admin Name</string>
+    <string name="adminsing">Sing In</string>
+    <string name="channel_name">Sing Up</string>
+    <string name="channel_description">Sing Up</string>
+    <string name="cannotaccsses">All the users can not access this page.Admins onlly can access this page.</string>
+    <string name="admsg">Admins of Elephas App can access this page and they can add new sight seen packages.\nIf You are admin,you can sign in.Then send a notification to your mobile.Thorough that notification you can access the Add New sight Seen Page and add new Sight Seen details.</string>
+    <string name="back"><![CDATA[<<Back]]></string>
+    <string name="nback"><![CDATA[<< Back]]></string>
+    <string name="mdgothercost">Admins of Elephas App can access this page and they can add new other cost packages.\nIf You are admin,you can sign in.Then send a notification to your mobile.Thorough that notification you can access the Other Cost package  Page and add new Other Cost Package details.</string>
 </resources>

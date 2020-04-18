@@ -15,7 +15,9 @@ import static com.example.sightseeen.Database.CostMaster.Costs.TABLE_NAME;
 
 public class DBHelper extends SQLiteOpenHelper {
 
+    //Data base  for other cost
     public static final String DATABASE_NAME = "ElephasOtherCostDetails.db";
+
 
     public DBHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, 1);

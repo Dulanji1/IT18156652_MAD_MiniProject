@@ -45,7 +45,7 @@ public class Other_Coast_Details extends AppCompatActivity {
 
 
     public void openActivity2(){
-        Intent intent2 = new Intent(this,Add_New_Cost.class);
+        Intent intent2 = new Intent(this,Admin_Access_OtherCostPackages.class);
         startActivity(intent2);
     }
 

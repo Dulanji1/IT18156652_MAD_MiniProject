@@ -11,5 +11,7 @@
     <color name="darkb">#1C18B1</color>
     <color name="b5">#B2F0FF</color>
     <color name="bc">#4F9CA0</color>
+    <color name="bacbtnclr">#635F5E</color>
+    <color name="newbackg">#2AAC92</color>
 
 </resources>

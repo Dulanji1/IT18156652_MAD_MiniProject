@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -14,224 +16,144 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.example.sightseeen.Database.DBHelperForSightSeen;
+import com.example.sightseeen.Database.SightseenMaster;
+
 
 public class Add_new_sight extends AppCompatActivity {
 
-    EditText txtsightID,txtsightName,txttpriceChild,txtpriceAlud;
-    Button btnSave,btnShow,btnUpdate,btnDelete,btnshowall;
-    DatabaseReference dbRef;
-    sightseenticketprices sightPriceObj;
+    Button select_all, add, delete, update,details,back;
+    EditText sightNo,sightName,childTicPrice,adultTicPrice;
+    DBHelperForSightSeen sightDB;
 
-
-    //Firebase
-    FirebaseDatabase firebaseDatabase;
-
-    //Method to clear all user inputs
-    private void clearControls(){
-        txtsightID.setText("");
-        txtsightName.setText("");
-        txttpriceChild.setText("");
-        txtpriceAlud.setText("");
-
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_sight);
 
 
-        txtsightID = findViewById(R.id.sno1);
-        txtsightName = findViewById(R.id.sname1);
-        txttpriceChild = findViewById(R.id.childprice);
-        txtpriceAlud = findViewById(R.id.adultprice);
+        sightDB = new DBHelperForSightSeen(this);
+        SQLiteDatabase db = sightDB.getReadableDatabase();
 
-        btnSave = findViewById(R.id.s_saveButton);
-        btnShow = findViewById(R.id.s_showButton);
-        btnUpdate = findViewById(R.id.s_updateButton);
-        btnDelete = findViewById(R.id.s_deleteButton);
-        btnshowall = findViewById(R.id.s_showAllButton);
+        // Hooks
+        details = findViewById(R.id.s_DetailsButton);
+        select_all = findViewById(R.id.s_showButton);
+        add = findViewById(R.id.s_saveButton);
+        update = findViewById(R.id.s_updateButton);
+        delete = findViewById(R.id.s_deleteButton);
+        back=findViewById(R.id.back_btn);
+
+        sightNo = findViewById(R.id.sno1);
+        sightName = findViewById(R.id.sname1);
+        childTicPrice = findViewById(R.id.childprice);
+        adultTicPrice = findViewById(R.id.adultprice);
 
 
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        dbRef = firebaseDatabase.getReference("SightSeen");
-
-        sightPriceObj = new sightseenticketprices();
-
-        // save
-        btnSave.setOnClickListener(new View.OnClickListener() {
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                openActivity2();
+            }
+        });
 
 
-
-              dbRef = FirebaseDatabase.getInstance().getReference().child("SightSeen");
-                try {
-                    if (TextUtils.isEmpty(txtsightID.getText().toString()))
-                        Toast.makeText(getApplicationContext(), "Please enter a sight ID", Toast.LENGTH_SHORT).show();
-                    else if (TextUtils.isEmpty(txtsightName.getText().toString()))
-                        Toast.makeText(getApplicationContext(), "Please enter a sight name", Toast.LENGTH_SHORT).show();
-                    else if (TextUtils.isEmpty(txttpriceChild.getText().toString()))
-                        Toast.makeText(getApplicationContext(), "Please enter price for child ticket price", Toast.LENGTH_SHORT).show();
-                    else if (TextUtils.isEmpty(txtpriceAlud.getText().toString()))
-                        Toast.makeText(getApplicationContext(), "Please enter price for adult ticket price", Toast.LENGTH_SHORT).show();
-                    else {
+        AddDataSight();
+        detailsForAdminSight();
+        viewAllSight();
+        UpdateDataSight();
+        DeleteDataSight();
 
 
-                        // Take inputs from the user and assigning them in to std instance
-                        sightPriceObj.setSightNo(txtsightID.getText().toString().trim());
-                        sightPriceObj.setSightName(txtsightName.getText().toString().trim());
-                        sightPriceObj.setTpriceChild(txttpriceChild.getText().toString().trim());
-                        sightPriceObj.setTpriceAdult(txtpriceAlud.getText().toString().trim());
+    }
 
+    public void AddDataSight(){
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!(sightNo.getText().toString().equals("")||sightName.getText().toString().equals("") || childTicPrice.getText().toString().equals("") || adultTicPrice.getText().toString().equals(""))){
+                    boolean val = sightDB.insertDartaSight(sightNo.getText().toString(),sightName.getText().toString(), childTicPrice.getText().toString(), adultTicPrice.getText().toString());
+                    if(val == true)
+                        Toast.makeText(Add_new_sight.this, "New sight seen details added successfully ", Toast.LENGTH_SHORT).show();
+                    else
+                        Toast.makeText(Add_new_sight.this, "Data already exists. ", Toast.LENGTH_SHORT).show();
 
-                        // Insert to the database
-                        dbRef.push().setValue(sightPriceObj);
-                        dbRef.child("Sight1").setValue(sightPriceObj);
-
-
-                        // Feed to user via a toast
-                        Toast.makeText(getApplicationContext(), "Data inserted successfully", Toast.LENGTH_SHORT).show();
-                        clearControls();
-                    }
-                } catch (NumberFormatException e) {
-                    Toast.makeText(getApplicationContext(), "Invalid contact number", Toast.LENGTH_SHORT).show();
                 }
+                else
+                    Toast.makeText(Add_new_sight.this, "All fields are mandetory. Data  not inserted ", Toast.LENGTH_SHORT).show();
+            }
+
+
+        });
+
+
+    }
+
+
+    //details for new admin
+    public void detailsForAdminSight(){
+        details.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int x = 0;
+
+                StringBuffer buffer3 = new StringBuffer();
+                while (x<1){
+
+                    buffer3.append("\n INSERT DATA \nYou can only give interger number for sight seen no.\nYou can add data  as you wish.\nBut Sight Seen No is primary key.\nSo you can not add different data to same primary key.");
+                    buffer3.append("\n \n \n UPDATE DATA \nWhen you want to update data you can update data according to relevant primary key.\nBut in here you have the feilds details.");
+                    buffer3.append("\n \n \n DELETE DATA \nYou can delete data by given only primary key(Sight Seen No).\nThen relevant details according to primary key will be deleted from Data Base.");
+                    buffer3.append("\n  \n \n  VIEW DATA \nYou can view details which you add before.");
+                    buffer3.append("\n");
+                    buffer3.append("");
+                    buffer3.append("");
+                    x++;
+
+                }
+                //show all data
+                showMessage2("Details for new admin",buffer3.toString());
+
             }
         });
 
 
+    }
+    public void showMessage2(String title,String Message){
+        AlertDialog.Builder builder2 = new AlertDialog.Builder(this);
+        builder2.setCancelable(true);
+        builder2.setTitle(title);
+        builder2.setMessage(Message);
+        builder2.show();
+    }
 
 
-        // Show
-        btnShow.setOnClickListener(new View.OnClickListener() {
+
+    //View details
+    public void viewAllSight(){
+        select_all.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                DatabaseReference readRef = FirebaseDatabase.getInstance().getReference().child("SightSeen").child("Sight1");
-                readRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.hasChildren()) {
-                            txtsightID.setText(dataSnapshot.child("sightNo").getValue().toString());
-                            txtsightName.setText(dataSnapshot.child("sightName").getValue().toString());
-                            txttpriceChild.setText(dataSnapshot.child("tpriceChild").getValue().toString());
-                            txtpriceAlud.setText(dataSnapshot.child("tpriceAdult").getValue().toString());
-                        } else {
-                            Toast.makeText(getApplicationContext(), "No source to display", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
-
-
-            }
-        });
-
-        //show all data
-        btnshowall.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Cursor res = (Cursor) dbRef.getDatabase();
+                Cursor res = sightDB.readAllInfoSight();
                 if (res.getCount() == 0){
                     //show message
-                    showMessage3("Error","Nothing found");
+                    showMessage("Error","Nothing found");
                     return;
                 }
                 StringBuffer buffer = new StringBuffer();
                 while (res.moveToNext()){
 
-                    buffer.append("packageNo :"+res.getString(0)+"\n");
-                    buffer.append("packageName :"+res.getString(1)+"\n");
+                    buffer.append("Sight Seen No :"+res.getString(0)+"\n");
+                    buffer.append("Sight Seen Name :"+res.getString(1)+"\n");
                     buffer.append("Ticket Price For Child :"+res.getString(2)+"\n");
-                    buffer.append("Ticket Price For Adult :"+res.getString(3)+"\n \n");
+                    buffer.append("Ticket Price For Adult  :"+res.getString(3)+"\n \n");
 
                 }
                 //show all data
-                showMessage3("Data",buffer.toString());
-                }
-        });
-
-        // Update
-        btnUpdate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                DatabaseReference updRef = FirebaseDatabase.getInstance().getReference().child("SightSeen");
-                updRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.hasChild("Sight1")) {
-                            try {
-                                sightPriceObj.setSightNo(txtsightID.getText().toString().trim());
-                                sightPriceObj.setSightName(txtsightName.getText().toString().trim());
-                                sightPriceObj.setTpriceChild(txttpriceChild.getText().toString().trim());
-                                sightPriceObj.setTpriceAdult( txtpriceAlud.getText().toString().trim());
-
-                                dbRef = FirebaseDatabase.getInstance().getReference().child("SightSeen").child("Sight1");
-                                dbRef.setValue(sightPriceObj);
-                                clearControls();
-
-                                // Feedback to the user via toast
-                                Toast.makeText(getApplicationContext(), "Data updated successfully", Toast.LENGTH_SHORT).show();
-
-
-                            } catch (NumberFormatException e) {
-                                Toast.makeText(getApplicationContext(), "Invalid contact number", Toast.LENGTH_SHORT).show();
-                            }
-                        } else {
-                            Toast.makeText(getApplicationContext(), "No source to update", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
+                showMessage("Data",buffer.toString());
             }
         });
-
-        // Delete
-        btnDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                DatabaseReference delRef = FirebaseDatabase.getInstance().getReference().child("SightSeen");
-                delRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.hasChild("Sight1")) {
-                            dbRef = FirebaseDatabase.getInstance().getReference().child("SightSeen").child("Sight1");
-                            dbRef.removeValue();
-                            clearControls();
-                            Toast.makeText(getApplicationContext(), "Data deleted successfully", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(getApplicationContext(), "No source to delete", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
-            }
-        });
-
     }
 
-    public void showMessage3(String title,String Message){
+
+    public void showMessage(String title,String Message){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);
         builder.setTitle(title);
@@ -240,5 +162,41 @@ public class Add_new_sight extends AppCompatActivity {
     }
 
 
-}
+    public void UpdateDataSight(){
+        update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean isUpdated= sightDB.updateDataSight(sightNo.getText().toString(),sightName.getText().toString(),childTicPrice.getText().toString(),adultTicPrice.getText().toString());
+                if (isUpdated == true){
+                    Toast.makeText(Add_new_sight.this, "Data updated successfully ", Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(Add_new_sight.this, "Data Not Updated ", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
+    }
+
+    //delete data
+    public void DeleteDataSight(){
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Integer deletedRows = sightDB.deleteDataSight(sightNo.getText().toString());
+                if (deletedRows > 0){
+                    Toast.makeText(Add_new_sight.this, "Data Deleted ", Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(Add_new_sight.this, "Data Not Deleted ", Toast.LENGTH_SHORT).show();
+
+                }
+            }
+        });
+    }
+
+    public void openActivity2(){
+        Intent intent2 = new Intent(this, sightseen.class);
+        startActivity(intent2);
+    }
+
+
+}
