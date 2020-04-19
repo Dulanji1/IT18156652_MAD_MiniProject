@@ -65,6 +65,12 @@ public class Add_new_sight extends AppCompatActivity {
 
     }
 
+public void onBackPressed(){
+    Intent intent2 = new Intent(this, sightseen.class);
+    startActivity(intent2);
+    super.onBackPressed();
+    finish();
+}
     public void AddDataSight(){
         add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -166,13 +172,16 @@ public class Add_new_sight extends AppCompatActivity {
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean isUpdated= sightDB.updateDataSight(sightNo.getText().toString(),sightName.getText().toString(),childTicPrice.getText().toString(),adultTicPrice.getText().toString());
+                if((sightNo.getText().toString().equals("")||sightName.getText().toString().equals("") || childTicPrice.getText().toString().equals("") || adultTicPrice.getText().toString().equals(""))) {
+                    Toast.makeText(Add_new_sight.this, "No data to update.Select data first. ", Toast.LENGTH_SHORT).show();
+                }else{
+                    boolean isUpdated= sightDB.updateDataSight(sightNo.getText().toString(),sightName.getText().toString(),childTicPrice.getText().toString(),adultTicPrice.getText().toString());
                 if (isUpdated == true){
                     Toast.makeText(Add_new_sight.this, "Data updated successfully ", Toast.LENGTH_SHORT).show();
                 }else {
                     Toast.makeText(Add_new_sight.this, "Data Not Updated ", Toast.LENGTH_SHORT).show();
                 }
-            }
+            }}
         });
 
     }
@@ -186,7 +195,7 @@ public class Add_new_sight extends AppCompatActivity {
                 if (deletedRows > 0){
                     Toast.makeText(Add_new_sight.this, "Data Deleted ", Toast.LENGTH_SHORT).show();
                 }else {
-                    Toast.makeText(Add_new_sight.this, "Data Not Deleted ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Add_new_sight.this, "No Data To Deleted.Select Data First ", Toast.LENGTH_SHORT).show();
 
                 }
             }

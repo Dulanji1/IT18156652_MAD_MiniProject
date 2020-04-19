@@ -3,6 +3,7 @@ package com.example.sightseeen;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -46,7 +47,12 @@ public class Add_New_Cost extends AppCompatActivity {
         detailsForAdmin();
 
     }
-
+    public void onBackPressed(){
+        Intent intent2 = new Intent(this, Other_Coast_Details.class);
+        startActivity(intent2);
+        super.onBackPressed();
+        finish();
+    }
 
     public void AddData(){
         add.setOnClickListener(new View.OnClickListener() {
@@ -142,20 +148,26 @@ public class Add_New_Cost extends AppCompatActivity {
     }
 
 
+
     public void UpdateData(){
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean isUpdated= costDb.updateData(packNo.getText().toString(),packName.getText().toString(),packDis.getText().toString(),packPrice.getText().toString());
-                if (isUpdated == true){
-                    Toast.makeText(Add_New_Cost.this, "Data updated successfully ", Toast.LENGTH_SHORT).show();
-                }else {
-                    Toast.makeText(Add_New_Cost.this, "Data Not Updated ", Toast.LENGTH_SHORT).show();
-                }
-            }
+                if((packNo.getText().toString().equals("")||packName.getText().toString().equals("") || packDis.getText().toString().equals("") || packPrice.getText().toString().equals(""))) {
+                    Toast.makeText(Add_New_Cost.this, "No data to update.Select data first. ", Toast.LENGTH_SHORT).show();
+                }else{
+                    boolean isUpdated= costDb.updateData(packNo.getText().toString(),packName.getText().toString(),packDis.getText().toString(),packPrice.getText().toString());
+                    if (isUpdated == true){
+                        Toast.makeText(Add_New_Cost.this, "Data updated successfully ", Toast.LENGTH_SHORT).show();
+                    }else {
+                        Toast.makeText(Add_New_Cost.this, "Data Not Updated ", Toast.LENGTH_SHORT).show();
+                    }
+                }}
         });
 
     }
+
+
 
     //delete data
     public void DeleteData(){
