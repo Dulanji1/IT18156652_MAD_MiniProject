@@ -102,8 +102,7 @@ public class Add_New_Cost extends AppCompatActivity {
 
             }
         });
-
-
+        
     }
     public void showMessage2(String title,String Message){
         AlertDialog.Builder builder2 = new AlertDialog.Builder(this);
