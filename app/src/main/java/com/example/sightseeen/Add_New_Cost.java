@@ -95,14 +95,13 @@ public class Add_New_Cost extends AppCompatActivity {
                     buffer2.append("");
                     buffer2.append("");
                     x++;
-
                 }
                 //show all data
                 showMessage2("Details for new admin",buffer2.toString());
 
             }
         });
-        
+
     }
     public void showMessage2(String title,String Message){
         AlertDialog.Builder builder2 = new AlertDialog.Builder(this);
