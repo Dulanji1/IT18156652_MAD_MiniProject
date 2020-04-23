@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
+import static com.example.sightseeen.R.layout.fragment_fragment1;
+
 
 public class Fragment1 extends Fragment {
 
@@ -14,7 +16,7 @@ public class Fragment1 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fragment1, container, false);
+        return inflater.inflate(fragment_fragment1, container, false);
     }
 
 

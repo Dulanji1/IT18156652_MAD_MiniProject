@@ -58,8 +58,10 @@ public class Add_New_Cost extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!(packNo.getText().toString().equals("")||packName.getText().toString().equals("") || packDis.getText().toString().equals("") || packPrice.getText().toString().equals(""))){
-                    boolean val = costDb.insertDarta(packNo.getText().toString(),packName.getText().toString(), packDis.getText().toString(), packPrice.getText().toString());
+                if(!(packNo.getText().toString().equals("")||packName.getText().toString().equals("") || packDis.getText().toString().equals("")
+                        || packPrice.getText().toString().equals(""))){
+                    boolean val = costDb.insertDarta(packNo.getText().toString(),packName.getText().toString(), packDis.getText().toString(),
+                            packPrice.getText().toString());
                     if(val == true)
                         Toast.makeText(Add_New_Cost.this, "New cost package added successfully ", Toast.LENGTH_SHORT).show();
                     else
@@ -137,8 +139,6 @@ public class Add_New_Cost extends AppCompatActivity {
             }
         });
     }
-
-
     public void showMessage(String title,String Message){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);
@@ -153,10 +153,12 @@ public class Add_New_Cost extends AppCompatActivity {
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if((packNo.getText().toString().equals("")||packName.getText().toString().equals("") || packDis.getText().toString().equals("") || packPrice.getText().toString().equals(""))) {
+                if((packNo.getText().toString().equals("")||packName.getText().toString().equals("") || packDis.getText().toString().equals("") ||
+                        packPrice.getText().toString().equals(""))) {
                     Toast.makeText(Add_New_Cost.this, "No data to update.Select data first. ", Toast.LENGTH_SHORT).show();
                 }else{
-                    boolean isUpdated= costDb.updateData(packNo.getText().toString(),packName.getText().toString(),packDis.getText().toString(),packPrice.getText().toString());
+                    boolean isUpdated= costDb.updateData(packNo.getText().toString(),packName.getText().toString(),packDis.getText().toString(),
+                            packPrice.getText().toString());
                     if (isUpdated == true){
                         Toast.makeText(Add_New_Cost.this, "Data updated successfully ", Toast.LENGTH_SHORT).show();
                     }else {

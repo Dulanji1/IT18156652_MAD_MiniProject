@@ -157,8 +157,6 @@ public void onBackPressed(){
             }
         });
     }
-
-
     public void showMessage(String title,String Message){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);
@@ -167,15 +165,17 @@ public void onBackPressed(){
         builder.show();
     }
 
-
+//Codde for upddate
     public void UpdateDataSight(){
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if((sightNo.getText().toString().equals("")||sightName.getText().toString().equals("") || childTicPrice.getText().toString().equals("") || adultTicPrice.getText().toString().equals(""))) {
+                if((sightNo.getText().toString().equals("")||sightName.getText().toString().equals("") || childTicPrice.getText().toString().equals("")
+                        || adultTicPrice.getText().toString().equals(""))) {
                     Toast.makeText(Add_new_sight.this, "No data to update.Select data first. ", Toast.LENGTH_SHORT).show();
                 }else{
-                    boolean isUpdated= sightDB.updateDataSight(sightNo.getText().toString(),sightName.getText().toString(),childTicPrice.getText().toString(),adultTicPrice.getText().toString());
+                    boolean isUpdated= sightDB.updateDataSight(sightNo.getText().toString(),sightName.getText().toString(),
+                            childTicPrice.getText().toString(),adultTicPrice.getText().toString());
                 if (isUpdated == true){
                     Toast.makeText(Add_new_sight.this, "Data updated successfully ", Toast.LENGTH_SHORT).show();
                 }else {

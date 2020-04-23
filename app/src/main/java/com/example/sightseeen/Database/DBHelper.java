@@ -5,43 +5,28 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
 import androidx.annotation.Nullable;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import static com.example.sightseeen.Database.CostMaster.Costs.TABLE_NAME;
-
 public class DBHelper extends SQLiteOpenHelper {
-
     //Data base  for other cost
     public static final String DATABASE_NAME = "ElephasOtherCostDetails.db";
-
-
     public DBHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, 1);
     }
-
     @Override
     public void onCreate(SQLiteDatabase db) {
-
-
         String SQL_CREATE_ENTRIES = "CREATE TABLE " + TABLE_NAME + " (" +
                 CostMaster.Costs.COLUMN_NAME_PackageNo + " INTEGER PRIMARY KEY, " +
                 CostMaster.Costs.COLUMN_NAME_PackageName+ " Text," +
                 CostMaster.Costs.COLUMN_NAME_PackageDiscription+ " Text," +
                 CostMaster.Costs.COLUMN_NAME_PackagePrice+" Text)";
-
         // Execute the SQL
         db.execSQL(SQL_CREATE_ENTRIES);
-
-
     }
-
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
     }

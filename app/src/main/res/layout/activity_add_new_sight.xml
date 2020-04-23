@@ -177,8 +177,8 @@
 
     <TextView
         android:id="@+id/textView20"
-        android:layout_width="164dp"
-        android:layout_height="30dp"
+        android:layout_width="188dp"
+        android:layout_height="40dp"
         android:layout_marginTop="28dp"
         android:text="@string/tprice"
         android:textColor="#010101"
