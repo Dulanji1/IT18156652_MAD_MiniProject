@@ -23,22 +23,26 @@ public class DBHelperForSightSeen  extends SQLiteOpenHelper {
         // Execute the SQL
         db.execSQL(SQL_CREATE_ENTRIES2);
     }
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_SightseenTabele);
         onCreate(db);
     }
 
+
     // Method for add info to sight seen
     public boolean insertDartaSight( String sightNo,String sightName,String childTicPrice,String adultTicPrice) {
         // Get the data repository in write mode
         SQLiteDatabase  db = this.getWritableDatabase();
+
         // Create new map of values where column names are the key
         ContentValues values = new ContentValues();
         values.put(SightseenMaster.Sightseen.COLUMN_NAME_SightNo,sightNo);
         values.put(SightseenMaster.Sightseen.COLUMN_NAME_SightName,sightName);
         values.put(SightseenMaster.Sightseen.COLUMN_NAME_Child_Ticket_Price,childTicPrice);
         values.put(SightseenMaster.Sightseen.COLUMN_NAME_Adult_Ticket_Price,adultTicPrice);
+        
         // Insert the new row returning the primary key value of new row
         long result = db.insert(TABLE_NAME_SightseenTabele, null, values);
         if (result == -1){
