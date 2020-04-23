@@ -31,7 +31,7 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    // Method for add info
+    // Method for add info for cost details
     public boolean insertDarta( String packageNo,String packageName,String packageDis,String packagePrice) {
 
         // Get the data repository in write mode
