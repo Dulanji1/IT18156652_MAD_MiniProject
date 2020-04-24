@@ -58,7 +58,7 @@ public class AdminAccessSightSeen extends AppCompatActivity {
 
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 PendingIntent pendingIntent = PendingIntent.getActivity(AdminAccessSightSeen.this,0,intent,0);
-                NotificationCompat.Builder builder = new NotificationCompat.Builder(AdminAccessSightSeen.this,CHANNEL_ID).setSmallIcon(R.drawable.ic_launcher_background).setContentTitle("My notification").setContentText(message).setPriority(NotificationCompat.PRIORITY_DEFAULT).setContentIntent(pendingIntent).setAutoCancel(true);
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(AdminAccessSightSeen.this,CHANNEL_ID).setSmallIcon(R.drawable.elephas_icon).setContentTitle("My notification").setContentText(message).setPriority(NotificationCompat.PRIORITY_DEFAULT).setContentIntent(pendingIntent).setAutoCancel(true);
 
                 NotificationManagerCompat notificationManager = NotificationManagerCompat.from(AdminAccessSightSeen.this);
 
