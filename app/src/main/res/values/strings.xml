@@ -123,4 +123,6 @@
     <string name="mdgothercost">Admins of Elephas App can access this page and they can add new other cost packages.\nIf You are admin,you can sign in.Then send a notification to your mobile.Thorough that notification you can access the Other Cost package  Page and add new Other Cost Package details.</string>
     <string name="con1">Confirm</string>
     <string name="Confirm">Confirm</string>
+    <string name="ncon">Do you shuwar you want add new data</string>
+    <string name="ncom2">Do you shuwar you want add new data</string>
 </resources>
