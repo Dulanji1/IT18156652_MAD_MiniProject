@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bac3"
     tools:context=".sightseen">
 
     <TextView
@@ -42,12 +43,12 @@
         android:layout_marginEnd="47dp"
         android:layout_marginRight="47dp"
         android:background="#509AAD"
+        android:onClick="tapToBounce"
         android:scrollbarStyle="outsideOverlay"
         android:shadowColor="@color/colorPrimaryDark"
         android:text="@string/sightseenpagebut1"
         android:textColor="#111010"
         android:textStyle="bold"
-        android:onClick="tapToBounce"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
