@@ -112,7 +112,7 @@ public class Add_New_Cost extends AppCompatActivity {
     }
 
 
-    //View details
+    //View details code
     public void viewAll(){
         select_all.setOnClickListener(new View.OnClickListener() {
             @Override
